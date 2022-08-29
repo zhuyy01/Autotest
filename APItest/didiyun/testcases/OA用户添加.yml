@@ -1,0 +1,33 @@
+config:
+    name: testcase description
+    variables: {}
+teststeps:
+-   name: /prod-api/system/user
+    request:
+        headers:
+            Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjZhOGMwMjViLTMyNjMtNDMyZC05OWU3LTg1NTFlZTNhNTUzYiJ9.25lguzJ63wsDhRPWLzEMJFCwbBBLN3_wi6teoqem8aOn78_nu0SZEHGIP1-ObBJ30A9cL_o5BleLMJ2mQvWV7w
+            Content-Type: application/json;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+        json:
+            nickName: ${rand()}
+            password: '123456'
+            postIds: []
+            roleIds: []
+            status: '0'
+            userName: 小维
+        method: POST
+        url: http://192.168.179.150/prod-api/system/user
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.msg
+        - 新增用户'小维'失败，登录账号已存在
+    -   eq:
+        - content.code
+        - 500

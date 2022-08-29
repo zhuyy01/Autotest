@@ -1,0 +1,16 @@
+
+config:
+    name: "滴滴云接口批量执行"
+
+testcases:
+-
+    name: "询价接口"
+    testcase: .didiyun/testcases/check_P.yml
+
+-
+    name: "列表接口"
+    testcase: .didiyun/testcases/Dc2list.yml
+
+
+
+

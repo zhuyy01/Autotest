@@ -1,0 +1,49 @@
+config:
+    name: Dc2list接口
+    variables: {}
+teststeps:
+-   name: /dicloud/i/compute/dc2/list
+    request:
+        headers:
+            Content-Type: application/json;charset=UTF-8
+            Dicloud-Header-App: iaas
+            Dicloud-Header-Console-Version: '2'
+            Dicloud-Header-Csrf-Token: 5vBNyjD-AACqFBlPBGEtJSIpai0:1661687185296
+            Dicloud-Header-Nonce: cALibTYu6xh3YXCt-2YQ1fZy8RD:1661595815579
+            Dicloud-Header-Page-Token: ''
+            Dicloud-Header-Project-Id: ''
+            Dicloud-Header-Regionid: all
+            Dicloud-Header-Zoneid: all
+            Sec-Fetch-Dest: empty
+            Sec-Fetch-Mode: cors
+            Sec-Fetch-Site: same-site
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+            sec-ch-ua: '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"'
+            sec-ch-ua-mobile: ?0
+            sec-ch-ua-platform: '"Windows"'
+            Content-Type: application/json;charset=UTF-8
+            Cookie: Hm_lvt_9eaa41ddde51c419f3c8953af0161d25=1660038268,1660719111,1660748148,1661453249; Hm_lpvt_9eaa41ddde51c419f3c8953af0161d25=1661453288; feq=1; u_name=186*****374; q=T_u_Fy5ELRglRDqNCdl5a5OwF9DhulAbhkvoDqS9ZQQkzDmuwkAMgOG7_LUV2ePM5vb17w4sYWkGCUQV5e4o0H7FtzKUwCedFGEYYcJIhHe1LAwnVBgzYaWk1K23nTPB3z_CgQDhSLQ6uyctubfUk6pwJrwmYSFWXo_387QQeRMu381Kq7ZvVwJrRb3V5nVGuP3WO6HbJwAA__8=
+        json:
+            condition: {}
+            limit: 10
+            simplify: false
+            start: 0
+        method: POST
+        url: https://api.didiyun.com/dicloud/i/compute/dc2/list
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=utf-8
+    -   eq:
+        - content.errno
+        - 0
+    -   eq:
+        - content.errmsg
+        - ok
+    -   eq:
+        - content.data.0.dc2Uuid   #postman data[0].dc2Uuid   requests ["data"][0]["dc2Uuid"]
+        - 2978abf6a44952abb15a8b70fd191092
